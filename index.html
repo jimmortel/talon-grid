@@ -6,48 +6,56 @@
     <title>TALON Grid</title>
     <style>
         body { background: #0a0e17; color: #d4af37; font-family: 'Arial', sans-serif; text-align: center; padding: 20px; }
-        .main-container { background: #1a1a1a; border: 2px solid #d4af37; padding: 20px; border-radius: 15px; max-width: 450px; margin: 0 auto; }
-        h1 { color: #d4af37; text-transform: uppercase; margin-bottom: 10px; }
         
+        /* En-tête avec images */
+        .header-container { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px; }
+        .profile-img { width: 50px; height: 50px; border-radius: 50%; border: 2px solid #d4af37; }
+        h1 { color: #d4af37; text-transform: uppercase; margin: 0; }
+        
+        .main-container { background: #1a1a1a; border: 2px solid #d4af37; padding: 20px; border-radius: 15px; max-width: 450px; margin: 0 auto; }
+        
+        /* Bloc infos */
+        .info-box { background: #000; padding: 15px; border-radius: 10px; margin-bottom: 20px; border: 1px solid #333; font-size: 14px; }
+        .address { font-family: monospace; font-size: 11px; background: #222; padding: 8px; border-radius: 4px; word-break: break-all; margin: 10px 0; color: #fff; }
+        
+        /* Grille */
         .grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 2px; margin-top: 20px; }
         .cell { 
-            background: #000; 
-            border: 1px solid #d4af37; 
-            color: #fff; 
-            height: 30px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 8px; /* Taille optimisée pour les pseudos */
-            overflow: hidden; /* Empêche le texte de dépasser */
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            padding: 0 2px;
+            background: #000; border: 1px solid #d4af37; color: #fff; height: 30px; 
+            display: flex; align-items: center; justify-content: center; font-size: 8px; 
+            overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 0 2px;
         }
         .taken { background: #d4af37; color: #000; font-weight: bold; }
-        .prize-box { margin-bottom: 20px; font-weight: bold; }
     </style>
 </head>
 <body>
-    <div class="main-container">
+
+    <div class="header-container">
+        <img src="eagle-pi.jpg" alt="Profile" class="profile-img">
         <h1>TALON Grid</h1>
-        <div class="prize-box">
-            <p>1st: 10k TALON | 2nd: 5k | 3rd: 2k</p>
+        <img src="eagle-pi.jpg" alt="Profile" class="profile-img">
+    </div>
+    
+    <div class="main-container">
+        <div class="info-box">
+            <p><strong>Cost:</strong> 2€ in ETH per cell</p>
+            <p><strong>Official Address:</strong></p>
+            <p class="address">0x872bD846596Cc1aEde8Fd800997d242e3473fA83</p>
+            <p><small>Send ETH to this address to claim your spot.</small></p>
+            <hr style="border-color:#333">
+            <p><strong>Prizes:</strong> 1st: 10k | 2nd: 5k | 3rd: 2k TALON</p>
         </div>
+
         <div id="grid" class="grid"></div>
     </div>
 
     <script>
         const grid = document.getElementById('grid');
-        
-        // Liste des cases occupées (Vide pour le lancement)
-        const occupants = {}; 
+        const occupants = {}; // Ajoutez ici vos joueurs : { 1: "Pseudo" }
 
         for (let i = 1; i <= 100; i++) {
             const cell = document.createElement('div');
-            // Si la case existe dans 'occupants', on applique le style .taken
             cell.className = 'cell' + (occupants[i] ? ' taken' : '');
-            // Si le nom existe, on l'affiche, sinon on affiche le numéro
             cell.innerText = occupants[i] || i;
             grid.appendChild(cell);
         }
