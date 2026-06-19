@@ -5,72 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TALON Grid</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; text-align: center; background: #f4f4f4; padding: 20px; }
+        body { font-family: sans-serif; text-align: center; background: #f4f4f4; padding: 10px; }
         
-        /* Conteneur pour le titre et les images */
-        .header-container { 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 15px; 
-            margin-bottom: 20px; 
-        }
-        .profile-img { width: 50px; height: 50px; border-radius: 50%; border: 2px solid #ffd700; }
+        .header-container { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 10px; }
+        .profile-img { width: 60px; height: 60px; border-radius: 50%; border: 3px solid #ffd700; }
         
-        .info-box { background: #fff; border: 1px solid #ddd; padding: 15px; border-radius: 8px; max-width: 500px; margin: 0 auto 20px auto; }
-        .address { font-family: monospace; font-size: 12px; color: #555; word-break: break-all; background: #eee; padding: 5px; border-radius: 4px; }
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(10, 1fr); 
-            gap: 4px; 
-            max-width: 500px; 
-            margin: 0 auto; 
-        }
-        .cell { 
-            border: 1px solid #ccc; 
-            background: white; 
-            padding: 8px 0; 
-            font-size: 10px; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 25px;
-        }
-        .taken { background: #e0f7fa; color: #006064; font-weight: bold; }
-        ul { text-align: left; display: inline-block; margin: 10px 0; }
+        .main-container { background: #fff; border: 1px solid #ddd; padding: 15px; border-radius: 12px; max-width: 450px; margin: 0 auto; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        
+        .address { font-family: monospace; font-size: 11px; background: #eee; padding: 8px; border-radius: 4px; word-break: break-all; margin: 10px 0; }
+        
+        .grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 2px; margin-top: 20px; }
+        .cell { border: 1px solid #ccc; background: #f9f9f9; padding: 5px 0; font-size: 9px; min-height: 20px; display: flex; align-items: center; justify-content: center; }
+        .taken { background: #000; color: #fff; font-weight: bold; }
+        
+        h2 { margin: 5px 0; }
+        ul { text-align: left; display: inline-block; padding-left: 20px; }
     </style>
 </head>
 <body>
 
     <div class="header-container">
-        <img src="eagle-pi.jpg" alt="Profile" class="profile-img">
+        <img src="eagle-pi.jpg" alt="Logo" class="profile-img">
         <h1>TALON Grid</h1>
-        <img src="eagle-pi.jpg" alt="Profile" class="profile-img">
+        <img src="eagle-pi.jpg" alt="Logo" class="profile-img">
     </div>
     
-    <div class="info-box">
+    <div class="main-container">
         <p><strong>Cost:</strong> 2€ in ETH per cell</p>
         <p><strong>Official Address:</strong></p>
         <p class="address">0x872bD846596Cc1aEde8Fd800997d242e3473fA83</p>
-        <p><small>Send ETH to this address to claim your spot. Once received, I will update the grid.</small></p>
+        
         <hr>
-        <p><strong>Prizes:</strong></p>
+        <h3>Prizes:</h3>
         <ul>
             <li>1st: 10,000 TALON</li>
             <li>2nd: 5,000 TALON</li>
             <li>3rd: 2,000 TALON</li>
         </ul>
         <p><small>Winners drawn once the grid is full!</small></p>
-    </div>
 
-    <div id="grid" class="grid"></div>
+        <div id="grid" class="grid"></div>
+    </div>
 
     <script>
         const grid = document.getElementById('grid');
-        const occupants = {
-            1: "Player A", 
-            12: "Player B"
-        };
+        const occupants = { 1: "A", 12: "B" }; // Simplifié pour gagner de la place
 
         for (let i = 1; i <= 100; i++) {
             const cell = document.createElement('div');
