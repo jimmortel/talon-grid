@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TALON Grid</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; background: #f4f4f4; }
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(10, 1fr); 
+            gap: 5px; 
+            max-width: 500px; 
+            margin: 20px auto; 
+        }
+        .cell { 
+            border: 1px solid #ccc; 
+            background: white; 
+            padding: 10px; 
+            font-size: 10px; 
+            min-height: 30px;
+        }
+        .taken { background: #e0f7fa; color: #006064; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>TALON Grid</h1>
+    <div id="grid" class="grid"></div>
+
+    <script>
+        const grid = document.getElementById('grid');
+        // Occupied cells: modify this list manually
+        const occupants = {
+            1: "Player A", 
+            12: "Player B"
+        };
+
+        for (let i = 1; i <= 100; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'cell' + (occupants[i] ? ' taken' : '');
+            cell.innerText = occupants[i] || i;
+            grid.appendChild(cell);
+        }
+    </script>
+</body>
+</html>
